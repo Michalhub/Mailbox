@@ -1,0 +1,148 @@
+<?php
+
+namespace MailBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * User
+ *
+ * @ORM\Table(name="user")
+ * @ORM\Entity(repositoryClass="MailBundle\Repository\UserRepository")
+ */
+class User
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="MailBundle\Entity\Groupp", inversedBy="user")
+     * @ORM\JoinTable(name="users_groups")
+     */
+    private $group;
+
+    /**
+     * @var int
+     * @ORM\OneToMany(targetEntity="MailBundle\Entity\Address", mappedBy="user")
+     */
+    private $address;
+
+    /**
+     * @var int
+     * @ORM\OneToMany(targetEntity="MailBundle\Entity\Email", mappedBy="user")
+     */
+    private $email;
+
+    /**
+     * @var int
+     * @ORM\OneToMany(targetEntity="MailBundle\Entity\Telephone", mappedBy="user")
+     */
+    private $telephone;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="firstName", type="string", length=60)
+     */
+    private $firstName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="secondName", type="string", length=60)
+     */
+    private $secondName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text")
+     */
+    private $description;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set firstName
+     *
+     * @param string $firstName
+     * @return User
+     */
+    public function setFirstName($firstName)
+    {
+        $this->firstName = $firstName;
+
+        return $this;
+    }
+
+    /**
+     * Get firstName
+     *
+     * @return string 
+     */
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * Set secondName
+     *
+     * @param string $secondName
+     * @return User
+     */
+    public function setSecondName($secondName)
+    {
+        $this->secondName = $secondName;
+
+        return $this;
+    }
+
+    /**
+     * Get secondName
+     *
+     * @return string 
+     */
+    public function getSecondName()
+    {
+        return $this->secondName;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return User
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+}

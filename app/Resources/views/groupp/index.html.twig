@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Groupps list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Groupp</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for groupp in groupps %}
+            <tr>
+                <td><a href="{{ path('groupp_show', { 'id': groupp.id }) }}">{{ groupp.id }}</a></td>
+                <td>{{ groupp.groupp }}</td>
+                <td>{{ groupp.description }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('groupp_show', { 'id': groupp.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('groupp_edit', { 'id': groupp.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('groupp_new') }}">Create a new groupp</a>
+        </li>
+    </ul>
+{% endblock %}
